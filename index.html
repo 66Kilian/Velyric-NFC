@@ -7,7 +7,7 @@
 <meta name="description" content="Velyric – MI hangalapú ügynökök egy fényesebb holnapért. Mentsd el a névjegyünket egy érintéssel.">
 <meta name="theme-color" content="#08090d">
 <meta property="og:title" content="Velyric – MI hangalapú ügynökök">
-<meta property="og:description" content="Fogadunk minden hívást, időpontot foglalunk és segítünk az ügyfeleidnek – magyarul, németül és angolul, éjjel-nappal.">
+<meta property="og:description" content="Fogadunk minden hívást, időpontot foglalunk és segítünk az ügyfeleidnek – éjjel-nappal.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +69,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @keyframes letter{to{opacity:1;transform:none;filter:blur(0)}}
 .i-tag{margin-top:16px;font-size:clamp(10.5px,3vw,13px);font-weight:500;letter-spacing:.42em;padding-left:.42em;text-transform:uppercase;color:#e9e3ee;opacity:0;animation:tag 1s 2.3s cubic-bezier(.16,1,.3,1) forwards}
 @keyframes tag{from{opacity:0;letter-spacing:.9em;filter:blur(5px)}to{opacity:1;letter-spacing:.42em;filter:blur(0)}}
-.i-langs{display:inline-flex;gap:8px;margin-top:18px;opacity:0;animation:up .6s 2.6s ease-out forwards}
 .i-langs i{font-style:normal;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.12em;padding:5px 10px;border-radius:99px;border:1px solid rgba(255,43,145,.35);background:rgba(255,43,145,.08);color:#ffd0e6}
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
@@ -156,11 +155,6 @@ footer{margin-top:30px;color:var(--dim);font-size:12px;line-height:1.8}
 .rv.in{opacity:1;transform:none;filter:none}
 body.intro-on main{visibility:hidden}
 
-/* asztali gépen: telefon keret */
-@media (min-width:700px){
-  body{display:grid;place-items:center;padding:40px 0}
-  main{width:430px;border-radius:44px;border:1px solid var(--border);background:rgba(8,9,13,.55);box-shadow:0 40px 120px -30px rgba(255,43,145,.35),0 0 0 10px #111218;padding-top:48px}
-}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv,.m{opacity:1;transform:none;filter:none}
@@ -199,7 +193,6 @@ body.intro-on main{visibility:hidden}
     </div>
     <div class="word"><span style="--i:0">V</span><span style="--i:1">e</span><span style="--i:2">l</span><span style="--i:3">y</span><span style="--i:4">r</span><span style="--i:5">i</span><span style="--i:6">c</span></div>
     <div class="i-tag">MI hangalapú ügynökök</div>
-    <div class="i-langs"><i>HU</i><i>DE</i><i>EN</i><i>0–24</i></div>
   </div>
   <button class="skip" id="skip" type="button">Kihagyás ›</button>
 </div>
@@ -211,11 +204,11 @@ body.intro-on main{visibility:hidden}
   <div class="tile rv"><svg><use href="#logo"/></svg></div>
   <h1 class="gt rv">Velyric</h1>
   <p class="sub rv">MI hangalapú ügynökök</p>
-  <div class="pill rv"><span class="dot"></span>Éjjel-nappal elérhető · HU · DE · EN</div>
+  <div class="pill rv"><span class="dot"></span>Éjjel-nappal elérhető</div>
 
   <p class="desc rv">
     Hangalapú MI-ügynökök, amik <b>felveszik a telefont</b>, időpontot foglalnak és válaszolnak –
-    <b>éjjel-nappal</b>, a te vállalkozásod nevében. Magyarul, németül és angolul.
+    <b>éjjel-nappal</b>, a te vállalkozásod nevében.
   </p>
 
   <a class="save rv" href="velyric.vcf" id="saveBtn">
