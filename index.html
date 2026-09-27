@@ -155,6 +155,49 @@ footer{margin-top:30px;color:var(--dim);font-size:12px;line-height:1.8}
 .rv.in{opacity:1;transform:none;filter:none}
 body.intro-on main{visibility:hidden}
 
+/* ================= ASZTALI NÉZET ================= */
+.top{display:none}
+@media (hover:hover){
+  .act:hover{border-color:rgba(255,43,145,.5);background:rgba(255,43,145,.07);transform:translateY(-2px)}
+  .save:hover{transform:translateY(-2px);box-shadow:0 26px 54px -14px rgba(255,43,145,.9),inset 0 1px 0 rgba(255,255,255,.3)}
+  .web .arr{transition:transform .25s}.web:hover .arr{transform:translateX(4px)}
+}
+@media (min-width:960px){
+  .bgfx .a{width:760px;height:760px;top:-280px;left:-220px}
+  .bgfx .b{width:680px;height:680px}
+  .bgfx .c{width:460px;height:460px;top:30%;left:48%}
+  main{max-width:1240px;min-height:100svh;display:flex;flex-direction:column;padding:0 56px 32px;text-align:left}
+  .top{display:flex;align-items:center;justify-content:space-between;padding:28px 0}
+  .top-brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+  .top-brand svg{width:30px;height:26px}
+  .top-link{display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-size:14px;font-weight:500;color:#ddd8e2;transition:border-color .2s}
+  .top-link:hover{border-color:rgba(255,43,145,.5)}
+  .top-link svg{width:16px;height:16px}
+  .grid{flex:1;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(48px,6vw,96px);align-items:center;padding:24px 0 40px}
+  .tile{margin:0;width:120px;height:120px}
+  .tile svg{width:78px;height:68px}
+  h1{font-size:clamp(84px,8.5vw,128px);margin-top:28px;letter-spacing:-.045em}
+  .sub{font-size:13px;padding-left:0;margin-top:14px}
+  .pill{margin-top:22px}
+  .desc{font-size:19px;line-height:1.6;max-width:540px;margin-top:24px}
+  .save{display:inline-flex;width:auto;padding:19px 38px;margin-top:32px;font-size:16.5px}
+  .acts{display:flex;gap:10px;margin-top:14px}
+  .act{flex-direction:row;gap:10px;padding:12px 18px;font-size:14px}
+  .act svg{width:19px;height:19px}
+  .col-r{display:flex;flex-direction:column;gap:14px}
+  .call{margin-top:0;padding:20px;border-radius:24px;box-shadow:0 40px 90px -30px rgba(255,43,145,.35),0 20px 50px -20px #000}
+  .call-h b{font-size:15px}
+  .msgs{min-height:230px;gap:10px}
+  .m{font-size:15px;padding:11px 14px}
+  .m.ok b{font-size:15px}
+  .feat{margin-top:0;gap:14px}
+  .feat div{padding:16px;font-size:14px}
+  .web{margin-top:0}
+  footer{margin-top:0;text-align:center}
+  .mark{width:clamp(170px,16vw,230px)}
+  .word{font-size:clamp(68px,7vw,104px)}
+  .i-tag{font-size:15px}
+}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv,.m{opacity:1;transform:none;filter:none}
@@ -201,6 +244,12 @@ body.intro-on main{visibility:hidden}
 
 <!-- ================= NÉVJEGY ================= -->
 <main>
+  <nav class="top">
+    <a class="top-brand" href="https://velyric.com" target="_blank" rel="noopener"><svg><use href="#logo"/></svg>Velyric</a>
+    <a class="top-link" href="https://velyric.com" target="_blank" rel="noopener">velyric.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </nav>
+  <div class="grid">
+  <div class="col-l">
   <div class="tile rv"><svg><use href="#logo"/></svg></div>
   <h1 class="gt rv">Velyric</h1>
   <p class="sub rv">MI hangalapú ügynökök</p>
@@ -222,6 +271,8 @@ body.intro-on main{visibility:hidden}
     <button class="act" id="share" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>Megosztás</button>
   </div>
 
+  </div>
+  <div class="col-r">
   <div class="call rv" aria-label="Példa hívás">
     <div class="call-h">
       <span class="av"><svg><use href="#logo"/></svg></span>
@@ -244,6 +295,8 @@ body.intro-on main{visibility:hidden}
     <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
   </a>
 
+  </div>
+  </div>
   <footer class="rv">© <span id="yr">2026</span> Velyric · Minden jog fenntartva.</footer>
 </main>
 
