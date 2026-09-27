@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Velyric | Névjegy</title>
+<meta name="description" content="Velyric – MI hangalapú ügynökök egy fényesebb holnapért. Mentsd el a névjegyünket egy érintéssel.">
+<meta name="theme-color" content="#08090d">
+<meta property="og:title" content="Velyric – MI hangalapú ügynökök">
+<meta property="og:description" content="Fogadunk minden hívást, időpontot foglalunk és segítünk az ügyfeleidnek – magyarul, németül és angolul, éjjel-nappal.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08090d; --bg2:#0f1016; --glass:rgba(22,24,33,.72); --line:rgba(255,255,255,.08); --border:#262833;
+  --pink:#ff2b91; --magenta:#f000ff; --crimson:#ff315f; --coral:#ff8f73; --plum:#c11a8b;
+  --text:#f6f4f8; --muted:#a4a1ad; --dim:#6b6975;
+  --grad:linear-gradient(110deg,#e600ff 0%,#ff2b91 45%,#ff315f 70%,#ff9a5c 100%);
+  --cta:linear-gradient(110deg,#d4006c 0%,#db0a3e 65%,#e8583a 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:Geist,system-ui,-apple-system,sans-serif;min-height:100svh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ================= INTRO ================= */
+#intro{position:fixed;inset:0;z-index:100;background:radial-gradient(120% 80% at 50% 45%,#12080f 0%,#08090d 60%);overflow:hidden;cursor:pointer;clip-path:circle(150% at 50% var(--cy,40%))}
+#intro.out{animation:iris .9s cubic-bezier(.76,0,.24,1) forwards}
+@keyframes iris{to{clip-path:circle(0% at 50% var(--cy,40%))}}
+#intro:not(.play) *,#intro:not(.play) *::before,#intro:not(.play) *::after{animation-play-state:paused}
+.loader{position:absolute;left:50%;top:50%;width:110px;height:2px;margin:-1px 0 0 -55px;border-radius:2px;background:#ffffff10;overflow:hidden;transition:opacity .3s}
+.loader::after{content:"";position:absolute;inset:0;width:40%;background:var(--grad);animation:load 1s ease-in-out infinite;animation-play-state:running!important}
+@keyframes load{from{transform:translateX(-100%)}to{transform:translateX(260%)}}
+#intro.play .loader{opacity:0}
+
+.i-orb{position:absolute;left:50%;top:var(--cy,40%);width:130vmax;height:130vmax;transform:translate(-50%,-50%) scale(.05);border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,43,145,.30),rgba(240,0,255,.12) 38%,rgba(255,122,89,.05) 60%,transparent 72%);opacity:0;animation:orb 2s 1.05s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes orb{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.i-rings i{position:absolute;left:50%;top:var(--cy,40%);width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;border:1px solid rgba(255,43,145,.55);opacity:0;animation:ring 1.6s var(--d) cubic-bezier(.16,1,.3,1) forwards}
+@keyframes ring{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(7)}}
+
+/* hanghullám → logó */
+.wave{position:absolute;left:50%;top:var(--cy,40%);display:flex;align-items:center;gap:5px;transform:translate(-50%,-50%);animation:waveOut .45s 1s cubic-bezier(.7,0,.3,1) forwards}
+.wave b{width:4px;height:var(--h);border-radius:4px;background:var(--grad);background-size:600% 100%;background-position:var(--p) 0;transform:scaleY(0);box-shadow:0 0 12px rgba(255,43,145,.6);animation:bar .9s var(--d) cubic-bezier(.3,1.4,.5,1) forwards,talk .28s calc(var(--d) + .45s) ease-in-out 2 alternate}
+@keyframes bar{to{transform:scaleY(1)}}
+@keyframes talk{to{transform:scaleY(.35)}}
+@keyframes waveOut{to{transform:translate(-50%,-50%) scaleX(0);opacity:0;filter:blur(4px)}}
+
+.i-center{position:absolute;left:0;right:0;top:44%;transform:translateY(-50%);text-align:center}
+.mark{position:relative;width:clamp(120px,36vw,170px);margin:0 auto;aspect-ratio:64/56}
+.mark svg{width:100%;height:100%;overflow:visible;display:block}
+.mark .stem{clip-path:polygon(0 0,0 0,0 0,0 0);animation:stem .75s 1.05s cubic-bezier(.65,0,.2,1) forwards;filter:drop-shadow(0 0 18px rgba(230,0,255,.55))}
+@keyframes stem{0%{clip-path:polygon(0 0,0 0,0 0,0 0)}100%{clip-path:polygon(-10% -10%,160% -10%,160% 160%,-10% 160%)}}
+.mark .w1,.mark .w2{opacity:0;transform-box:fill-box;transform-origin:0% 100%;animation:wing .8s cubic-bezier(.2,1.3,.4,1) forwards;filter:drop-shadow(0 0 14px rgba(255,122,89,.55))}
+.mark .w1{animation-delay:1.45s}.mark .w2{animation-delay:1.6s}
+@keyframes wing{0%{opacity:0;transform:translate(40%,30%) rotate(-38deg) scale(.4)}60%{opacity:1}100%{opacity:1;transform:none}}
+.mark::after{content:"";position:absolute;inset:-20% -30%;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.9) 50%,transparent 58%);background-size:300% 100%;background-position:130% 0;mix-blend-mode:overlay;-webkit-mask:url(logo.svg) center/contain no-repeat;mask:url(logo.svg) center/contain no-repeat;animation:sweep .9s 2.15s ease-in-out forwards}
+@keyframes sweep{to{background-position:-30% 0}}
+.flash{position:absolute;left:50%;top:50%;width:220px;height:220px;margin:-110px;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,#fff 0%,rgba(255,180,220,.9) 12%,rgba(255,43,145,.55) 35%,rgba(240,0,255,.18) 60%,transparent 75%);mix-blend-mode:screen;opacity:0;animation:flash .6s 1s ease-out forwards}
+@keyframes flash{0%{opacity:0;transform:scale(.1)}30%{opacity:1;transform:scale(.6)}100%{opacity:0;transform:scale(1.3)}}
+
+.word{margin-top:22px;font-size:clamp(44px,14vw,68px);font-weight:700;letter-spacing:-.035em;line-height:1;display:inline-flex}
+.word span{display:inline-block;opacity:0;transform:translateY(60%);filter:blur(10px);animation:letter .8s calc(1.75s + var(--i)*.06s) cubic-bezier(.16,1,.3,1) forwards;background:var(--grad);background-size:700% 100%;background-position:calc(var(--i)*16.6%) 0;-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .01em}
+@keyframes letter{to{opacity:1;transform:none;filter:blur(0)}}
+.i-tag{margin-top:16px;font-size:clamp(10.5px,3vw,13px);font-weight:500;letter-spacing:.42em;padding-left:.42em;text-transform:uppercase;color:#e9e3ee;opacity:0;animation:tag 1s 2.3s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes tag{from{opacity:0;letter-spacing:.9em;filter:blur(5px)}to{opacity:1;letter-spacing:.42em;filter:blur(0)}}
+.i-langs{display:inline-flex;gap:8px;margin-top:18px;opacity:0;animation:up .6s 2.6s ease-out forwards}
+.i-langs i{font-style:normal;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.12em;padding:5px 10px;border-radius:99px;border:1px solid rgba(255,43,145,.35);background:rgba(255,43,145,.08);color:#ffd0e6}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.dust i{position:absolute;left:var(--x);top:var(--y);width:3px;height:3px;border-radius:50%;background:#fff;box-shadow:0 0 8px 2px var(--c);opacity:0;animation:dust 2.4s var(--d) ease-out forwards}
+@keyframes dust{0%{opacity:0;transform:translate(0,0) scale(.4)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1)}}
+.skip{position:absolute;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#fffa;border:1px solid #ffffff26;border-radius:99px;padding:8px 14px;background:#0006;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* ================= CARD ================= */
+.bgfx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bgfx i{position:absolute;border-radius:50%;filter:blur(80px)}
+.bgfx .a{width:440px;height:440px;background:#ff2b9140;top:-180px;left:-160px;animation:drift 14s ease-in-out infinite alternate}
+.bgfx .b{width:380px;height:380px;background:#f000ff26;bottom:-140px;right:-160px;animation:drift 18s ease-in-out infinite alternate-reverse}
+.bgfx .c{width:260px;height:260px;background:#ff8f7324;top:42%;left:55%;animation:drift 12s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(60px,80px) scale(1.15)}}
+.bgfx::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:22px 22px;-webkit-mask:linear-gradient(#000,transparent 65%);mask:linear-gradient(#000,transparent 65%)}
+
+main{max-width:460px;margin:0 auto;padding:calc(32px + env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));text-align:center}
+.tile{position:relative;width:100px;height:100px;margin:0 auto;border-radius:30px;display:grid;place-items:center;background:linear-gradient(160deg,#1a0f1c,#0c0b11);box-shadow:0 24px 60px -14px rgba(255,43,145,.55),inset 0 1px 0 rgba(255,255,255,.08);isolation:isolate}
+.tile::before{content:"";position:absolute;inset:-2px;border-radius:32px;background:conic-gradient(from var(--a,0deg),#f000ff,transparent 25%,#ff9a5c 50%,transparent 75%,#f000ff);z-index:-2;animation:spin 5s linear infinite}
+.tile::after{content:"";position:absolute;inset:0;border-radius:30px;background:linear-gradient(160deg,#1a0f1c,#0c0b11);z-index:-1}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+.tile svg{width:66px;height:58px;overflow:visible;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-4px)}}
+h1{margin-top:22px;font-size:46px;font-weight:700;letter-spacing:-.035em;line-height:1}
+.sub{margin-top:10px;font-size:11.5px;font-weight:500;letter-spacing:.34em;padding-left:.34em;text-transform:uppercase;color:#d9d3de}
+.pill{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:7px 13px;border-radius:99px;font-size:12.5px;color:var(--muted);background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 #22c55e99}70%,100%{box-shadow:0 0 0 8px #22c55e00}}
+
+/* élő hívás demo */
+.call{margin-top:30px;text-align:left;padding:14px;border-radius:20px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 50px -20px #000}
+.call-h{display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.call-h .av{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#1a0f1c}
+.call-h .av svg{width:18px;height:16px}
+.call-h b{font-size:13.5px;font-weight:600}
+.call-h small{display:block;font-size:11px;color:var(--muted)}
+.call-h .eq{margin-left:auto;display:flex;align-items:center;gap:2.5px;height:18px}
+.call-h .eq i{width:3px;height:100%;border-radius:3px;background:var(--grad);animation:eq .9s ease-in-out infinite alternate;animation-delay:var(--d)}
+@keyframes eq{0%{transform:scaleY(.25)}100%{transform:scaleY(1)}}
+.call-h time{font-family:"Geist Mono",monospace;font-size:11.5px;color:var(--pink);margin-left:8px}
+.msgs{display:flex;flex-direction:column;gap:8px;padding-top:12px;min-height:150px}
+.m{max-width:84%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.4;opacity:0;transform:translateY(8px) scale(.97);transition:opacity .4s,transform .45s cubic-bezier(.2,1.2,.4,1)}
+.m.in{opacity:1;transform:none}
+.m.ai{background:rgba(255,43,145,.12);border:1px solid rgba(255,43,145,.25);border-bottom-left-radius:4px}
+.m.me{align-self:flex-end;background:#1d1f29;border:1px solid var(--border);border-bottom-right-radius:4px}
+.m small{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.m.ok{display:flex;align-items:center;gap:10px;max-width:100%;background:linear-gradient(90deg,rgba(34,197,94,.14),rgba(34,197,94,.03));border:1px solid rgba(34,197,94,.3)}
+.m.ok svg{flex:none;width:22px;height:22px;color:#4ade80}
+.m.ok b{display:block;font-size:13.5px}
+.m.ok span{font-size:12px;color:var(--muted)}
+.typing{display:inline-flex;gap:3px}.typing i{width:5px;height:5px;border-radius:50%;background:#ffb3d6;animation:tp 1s infinite}.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tp{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+
+.desc{margin-top:18px;color:#d0cbd6;font-size:15px;line-height:1.65}
+.desc b{color:#fff;font-weight:600}
+
+.save{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:24px;padding:18px;border-radius:18px;background:var(--cta);font-weight:700;font-size:16px;letter-spacing:.02em;overflow:hidden;box-shadow:0 20px 44px -14px rgba(255,43,145,.75),inset 0 1px 0 rgba(255,255,255,.3);transition:transform .15s}
+.save:active{transform:scale(.97)}
+.save::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 3.4s 1.2s infinite}
+@keyframes shine{0%{left:-60%}35%,100%{left:130%}}
+.save svg{width:22px;height:22px}
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.act{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 4px 12px;border-radius:16px;background:var(--glass);border:1px solid var(--line);font-size:12px;font-weight:600;color:#ece8f0;transition:transform .15s,border-color .2s}
+.act:active{transform:scale(.95);border-color:rgba(255,43,145,.5)}
+.act svg{width:22px;height:22px;color:var(--pink)}
+
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:30px;text-align:left}
+.feat div{display:flex;align-items:center;gap:10px;padding:13px 12px;border-radius:16px;background:var(--glass);border:1px solid var(--line);font-size:13px;font-weight:500;line-height:1.3}
+.feat svg{flex:none;width:20px;height:20px;color:var(--coral)}
+
+.web{display:flex;align-items:center;justify-content:space-between;margin-top:30px;padding:20px;border-radius:20px;text-align:left;position:relative;overflow:hidden;border:1px solid transparent;background:linear-gradient(135deg,#171520,#0b0b10) padding-box,linear-gradient(120deg,#f000ff,#ffffff22,#ff9a5c,#f000ff) border-box;background-size:auto,300% 300%;animation:border 6s linear infinite}
+@keyframes border{to{background-position:0 0,300% 0}}
+.web small{display:block;color:var(--muted);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+.web b{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.web .arr{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#fff;color:#000}
+.web .arr svg{width:20px;height:20px}
+footer{margin-top:30px;color:var(--dim);font-size:12px;line-height:1.8}
+
+.toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top));transform:translate(-50%,-160%);padding:12px 18px;border-radius:14px;background:#fff;color:#000;font-weight:600;font-size:14px;z-index:200;transition:transform .4s cubic-bezier(.2,1.2,.4,1);box-shadow:0 12px 30px #0009;white-space:nowrap}
+.toast.show{transform:translate(-50%,0)}
+
+.rv{opacity:0;transform:translateY(22px);filter:blur(6px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1),filter .8s}
+.rv.in{opacity:1;transform:none;filter:none}
+body.intro-on main{visibility:hidden}
+
+/* asztali gépen: telefon keret */
+@media (min-width:700px){
+  body{display:grid;place-items:center;padding:40px 0}
+  main{width:430px;border-radius:44px;border:1px solid var(--border);background:rgba(8,9,13,.55);box-shadow:0 40px 120px -30px rgba(255,43,145,.35),0 0 0 10px #111218;padding-top:48px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv,.m{opacity:1;transform:none;filter:none}
+}
+</style>
+</head>
+<body class="intro-on">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E600FF"/><stop offset=".55" stop-color="#D1005E"/><stop offset="1" stop-color="#FF1740"/></linearGradient>
+    <linearGradient id="gw" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#E0005F"/><stop offset=".6" stop-color="#FF3D5E"/><stop offset="1" stop-color="#FF9A5C"/></linearGradient>
+    <symbol id="logo" viewBox="0 0 64 56">
+      <path d="M2 9.5c7.6-.9 14.6-.4 18.4 3.2 4.5 4.3 7.2 13.5 12.4 21.8 3.6 5.8 7.2 8.8 12.6 11.4-7.4 5-16.6 7.2-22.2 1.6C17.6 41.9 14.8 28.7 10.3 20.1 8 15.7 5.6 12.6 2 9.5Z" fill="url(#gm)"/>
+      <path d="M31.3 26.8c4.9-8.1 11.6-15.7 21.6-16.7 3.4-.3 6.7.1 9.1.8-3.8 1.7-7 4.8-10 8.9-4.8 6.6-11.8 8.9-20.7 7Z" fill="url(#gw)"/>
+      <path d="M36.6 38.4c5.1-8.1 12-15.2 21.8-15.9 2.4-.2 4.5.1 5.6.4-3.4 1.8-6.1 4.8-8.8 8.7-4.6 6.7-11 8.7-18.6 6.8Z" fill="url(#gw)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= INTRO (~3,6 mp) ================= -->
+<div id="intro" aria-hidden="true">
+  <div class="loader"></div>
+  <div class="i-orb"></div>
+  <div class="i-rings"><i style="--d:1s"></i><i style="--d:1.2s"></i><i style="--d:1.9s"></i></div>
+  <div class="wave" id="wave"></div>
+  <div class="dust" id="dust"></div>
+  <div class="i-center">
+    <div class="mark">
+      <span class="flash"></span>
+      <svg viewBox="0 0 64 56">
+        <path class="stem" d="M2 9.5c7.6-.9 14.6-.4 18.4 3.2 4.5 4.3 7.2 13.5 12.4 21.8 3.6 5.8 7.2 8.8 12.6 11.4-7.4 5-16.6 7.2-22.2 1.6C17.6 41.9 14.8 28.7 10.3 20.1 8 15.7 5.6 12.6 2 9.5Z" fill="url(#gm)"/>
+        <path class="w1" d="M31.3 26.8c4.9-8.1 11.6-15.7 21.6-16.7 3.4-.3 6.7.1 9.1.8-3.8 1.7-7 4.8-10 8.9-4.8 6.6-11.8 8.9-20.7 7Z" fill="url(#gw)"/>
+        <path class="w2" d="M36.6 38.4c5.1-8.1 12-15.2 21.8-15.9 2.4-.2 4.5.1 5.6.4-3.4 1.8-6.1 4.8-8.8 8.7-4.6 6.7-11 8.7-18.6 6.8Z" fill="url(#gw)"/>
+      </svg>
+    </div>
+    <div class="word"><span style="--i:0">V</span><span style="--i:1">e</span><span style="--i:2">l</span><span style="--i:3">y</span><span style="--i:4">r</span><span style="--i:5">i</span><span style="--i:6">c</span></div>
+    <div class="i-tag">MI hangalapú ügynökök</div>
+    <div class="i-langs"><i>HU</i><i>DE</i><i>EN</i><i>0–24</i></div>
+  </div>
+  <button class="skip" id="skip" type="button">Kihagyás ›</button>
+</div>
+
+<div class="bgfx"><i class="a"></i><i class="b"></i><i class="c"></i></div>
+
+<!-- ================= NÉVJEGY ================= -->
+<main>
+  <div class="tile rv"><svg><use href="#logo"/></svg></div>
+  <h1 class="gt rv">Velyric</h1>
+  <p class="sub rv">MI hangalapú ügynökök</p>
+  <div class="pill rv"><span class="dot"></span>Éjjel-nappal elérhető · HU · DE · EN</div>
+
+  <p class="desc rv">
+    Hangalapú MI-ügynökök, amik <b>felveszik a telefont</b>, időpontot foglalnak és válaszolnak –
+    <b>éjjel-nappal</b>, a te vállalkozásod nevében. Magyarul, németül és angolul.
+  </p>
+
+  <a class="save rv" href="velyric.vcf" id="saveBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+    Névjegy mentése
+  </a>
+
+  <div class="acts rv">
+    <a class="act" href="mailto:sales@velyric.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>E-mail</a>
+    <a class="act" href="https://velyric.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>Weboldal</a>
+    <button class="act" id="share" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>Megosztás</button>
+  </div>
+
+  <div class="call rv" aria-label="Példa hívás">
+    <div class="call-h">
+      <span class="av"><svg><use href="#logo"/></svg></span>
+      <span><b>Velyric ügynök</b><small>Élő hívás</small></span>
+      <span class="eq"><i style="--d:0s"></i><i style="--d:.2s"></i><i style="--d:.4s"></i><i style="--d:.1s"></i><i style="--d:.3s"></i></span>
+      <time id="clock">00:00</time>
+    </div>
+    <div class="msgs" id="msgs"></div>
+  </div>
+
+  <div class="feat rv">
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg>Többnyelvű beszéd</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 16l2 2 4-4"/></svg>Naptáras foglalás</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>Okos hívásátadás</div>
+    <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>Valós idejű elemzés</div>
+  </div>
+
+  <a class="web rv" href="https://velyric.com" target="_blank" rel="noopener">
+    <span><small>Árak, demó &amp; kezdés</small><b>velyric.com</b></span>
+    <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+
+  <footer class="rv">© <span id="yr">2026</span> Velyric · Minden jog fenntartva.</footer>
+</main>
+
+<div class="toast" id="toast">Névjegy megnyitva – koppints a „Mentés”-re ✓</div>
+
+<script>
+(function(){
+  var intro=document.getElementById('intro'), body=document.body, done=false;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
+  var VCF='velyric.vcf';
+
+  // effektek középpontja = a logó valós helye
+  var mk=intro.querySelector('.mark').getBoundingClientRect();
+  intro.style.setProperty('--cy',(mk.top+mk.height/2)/window.innerHeight*100+'%');
+
+  // hanghullám oszlopok + fényporszemek
+  var wave=document.getElementById('wave'), hs=[8,16,26,38,22,48,30,56,34,20,44,60,40,24,50,32,18,42,28,14,8], w='';
+  hs.forEach(function(h,i){w+='<b style="--h:'+h+'px;--d:'+(.25+Math.abs(i-10)*.025)+'s;--p:'+(i*5)+'%"></b>'});
+  wave.innerHTML=w;
+  var dust=document.getElementById('dust'), cs=['#ff2b91','#f000ff','#ff9a5c'], d='';
+  for(var i=0;i<22;i++){var a=Math.random()*6.28,r=90+Math.random()*160;
+    d+='<i style="--x:50%;--y:var(--cy,40%);--dx:'+Math.cos(a)*r+'px;--dy:'+Math.sin(a)*r+'px;--d:'+(1+Math.random()*.5)+'s;--c:'+cs[i%3]+'"></i>'}
+  dust.innerHTML=d;
+
+  function toast(){var t=document.getElementById('toast');t.classList.add('show');setTimeout(function(){t.classList.remove('show')},2800)}
+  function openCard(){
+    // csak telefonon, munkamenetenként egyszer ugrik fel automatikusan
+    try{if(sessionStorage.getItem('vly-vcf'))return;sessionStorage.setItem('vly-vcf','1')}catch(e){}
+    if(!mobile)return;
+    setTimeout(function(){window.location.href=VCF;toast()},1300);
+  }
+  function reveal(){
+    var els=document.querySelectorAll('.rv');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+    els.forEach(function(e,i){e.style.transitionDelay=Math.min(i,7)*80+'ms';io.observe(e)});
+  }
+  function finish(){
+    if(done)return; done=true;
+    body.classList.remove('intro-on');
+    reveal(); runCall(); openCard();
+    intro.classList.add('out');
+    setTimeout(function(){intro.remove()},900);
+  }
+  if(reduce){done=true;intro.remove();body.classList.remove('intro-on');reveal();runCall();openCard();}
+  else{
+    intro.addEventListener('click',finish);
+    var started=false;
+    function start(){
+      if(started||done)return; started=true;
+      setTimeout(function(){ if(done)return; intro.classList.add('play'); setTimeout(finish,3600); },300);
+    }
+    var ready=function(){(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(start)};
+    if(document.readyState==='complete')ready(); else window.addEventListener('load',ready);
+    setTimeout(start,6000);
+  }
+
+  // élő hívás demo
+  function runCall(){
+    var el=document.querySelector('.call');
+    if(!('IntersectionObserver' in window))return playCall();
+    var io=new IntersectionObserver(function(en){if(en[0].isIntersecting){io.disconnect();setTimeout(playCall,400)}},{threshold:.4});
+    io.observe(el);
+  }
+  function playCall(){
+    var box=document.getElementById('msgs'), clock=document.getElementById('clock'), s=0;
+    setInterval(function(){s++;clock.textContent='0'+Math.floor(s/60)+':'+('0'+s%60).slice(-2)},1000);
+    var steps=[
+      ['ai','<small>Velyric</small>Jó napot! Miben segíthetek?',500],
+      ['me','<small>Hívó</small>Szeretnék időpontot foglalni jövő kedd délelőttre.',1700],
+      ['ai','<span class="typing"><i></i><i></i><i></i></span>',3000],
+      ['ok','<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><b>Időpont lefoglalva</b><span>Kedd, 10:00 · visszaigazolás elküldve</span></span>',4300]
+    ];
+    var typing;
+    steps.forEach(function(st){setTimeout(function(){
+      if(st[0]==='ok'&&typing)typing.remove();
+      var m=document.createElement('div');m.className='m '+(st[0]==='ok'?'ok':st[0]);m.innerHTML=st[1];box.appendChild(m);
+      if(st[1].indexOf('typing')>-1)typing=m;
+      requestAnimationFrame(function(){requestAnimationFrame(function(){m.classList.add('in')})});
+    },reduce?0:st[2])});
+  }
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  document.getElementById('saveBtn').addEventListener('click',function(){if(navigator.vibrate)navigator.vibrate(30);if(mobile)toast()});
+  document.getElementById('share').addEventListener('click',function(){
+    var data={title:'Velyric',text:'Velyric – MI hangalapú ügynökök',url:location.href};
+    if(navigator.share)navigator.share(data).catch(function(){});
+    else if(navigator.clipboard)navigator.clipboard.writeText(location.href).then(function(){var t=document.getElementById('toast');t.textContent='Link kimásolva ✓';toast()});
+  });
+})();
+</script>
+</body>
+</html>
