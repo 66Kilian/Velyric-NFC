@@ -23,11 +23,11 @@ feltétlenül használható internetes címként.
 
 ```powershell
 Set-Location 'C:\Users\upoka\Desktop\Fontosak\Velyric\Velyric-NFC-main'
-scp index.html logo.svg apple-touch-icon.png velyric.vcf compose.yaml nginx.conf root@VPS_IP:/opt/velyric-nfc/
+scp index.html logo.svg apple-touch-icon.png velyric.vcf velyric-de.vcf velyric-en.vcf compose.yaml nginx.conf root@VPS_IP:/opt/velyric-nfc/
 ```
 
 Ha az SSH nem a 22-es porton működik, a parancsban az `scp` után add meg a
-`-P PORTSZAM` kapcsolót. SFTP klienssel is feltöltheted ugyanezt a hat fájlt
+`-P PORTSZAM` kapcsolót. SFTP klienssel is feltöltheted ugyanezt a nyolc fájlt
 a `/opt/velyric-nfc/` mappába.
 
 A fájlok közvetlenül ebbe a mappába kerüljenek. A `.htaccess` az Apache-hoz
@@ -39,7 +39,7 @@ A következő parancsokat ismét a VPS SSH-termináljában futtasd, rootként:
 
 ```bash
 cd /opt/velyric-nfc
-chmod 644 index.html logo.svg apple-touch-icon.png velyric.vcf compose.yaml nginx.conf
+chmod 644 index.html logo.svg apple-touch-icon.png velyric.vcf velyric-de.vcf velyric-en.vcf compose.yaml nginx.conf
 systemctl enable --now docker
 docker compose config --quiet
 docker compose up -d --wait --wait-timeout 120

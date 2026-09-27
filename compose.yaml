@@ -44,6 +44,18 @@ services:
         read_only: true
         bind:
           create_host_path: false
+      - type: bind
+        source: ./velyric-de.vcf
+        target: /usr/share/nginx/html/velyric-de.vcf
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./velyric-en.vcf
+        target: /usr/share/nginx/html/velyric-en.vcf
+        read_only: true
+        bind:
+          create_host_path: false
     healthcheck:
       test: ['CMD', 'wget', '-q', '--spider', 'http://127.0.0.1/']
       interval: 30s
